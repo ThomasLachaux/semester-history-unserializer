@@ -12,14 +12,14 @@ Base = declarative_base()
 class Mapping(Base):
   __tablename__ = 'mapping'
 
-  id = Column(String, primary_key=True)
-  user_id = Column(String)
-  ue = Column(String)
-  semester = Column(String)
-  branch = Column(String)
-  level = Column(String)
-  faculty = Column(String)
-  formation = Column(String)
+  id = Column(String(64), primary_key=True)
+  user_id = Column(String(64))
+  ue = Column(String(64))
+  semester = Column(String(64))
+  branch = Column(String(64))
+  level = Column(String(64))
+  faculty = Column(String(64))
+  formation = Column(String(64))
 
 Mapping.__table__.drop(engine, checkfirst=True)
 Base.metadata.create_all(engine)
