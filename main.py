@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, String
+from sqlalchemy import create_engine, Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -12,12 +12,12 @@ Base = declarative_base()
 class Mapping(Base):
   __tablename__ = 'mapping'
 
-  id = Column(String(64), primary_key=True)
-  user_id = Column(String(64))
+  id = Column(Integer, primary_key=True)
+  user_id = Column(Integer)
   ue = Column(String(64))
   semester = Column(String(64))
   branch = Column(String(64))
-  level = Column(String(64))
+  level = Column(Integer)
   faculty = Column(String(64))
   formation = Column(String(64))
 
