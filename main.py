@@ -26,7 +26,6 @@ Base.metadata.create_all(engine)
 
 session = sessionmaker(bind=engine)()
 
-i = 0
 for user in etuutt.extract_data():
   for semesterId, semester in user['history'].items():
     for ue in semester['uvs'].values():
@@ -34,9 +33,8 @@ for user in etuutt.extract_data():
       if (ue 
         and semester['formation'] not in [None, 'Nc', 'Doctorat', 'Auditeur libre ', 'These']
         and semester['niveau'] not in ['2I1']):
-        print(f'{user["id"]} - {i}')
+        print(f'{user["id"]} - {semesterId} - {ue}')
         entity = Mapping(
-          id = i, 
           user_id = user['id'], 
           ue = ue, 
           semester = semesterId, 
@@ -45,6 +43,5 @@ for user in etuutt.extract_data():
           faculty = semester.get('filiere', None),
           formation = semester['formation'])
         session.add(entity)
-        i += 1
   
 session.commit()
